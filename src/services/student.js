@@ -65,14 +65,25 @@ export const getTotalCertificates = async () => {
     throw error;
   }
 }
-
 export const upcomingExamsCache = async () => {
   try {
     const response = await api.get('/students/nearest-exam');
+
     if (response.data && response.data.nearestExam) {
-      return response.data.nearestExam;
+      const examDate = new Date(response.data.nearestExam.date);
+
+      const day = examDate.getDate(); // 1–31
+      const monthAbbrs = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+      const month = monthAbbrs[examDate.getMonth()]; 
+
+      return {
+        day,
+        month,
+        examType: response.data.nearestExam.examType
+      };
     }
-    throw new Error('Invalid response format or missing upcomingExams from backend.');
+
+    throw new Error('Invalid response format or missing nearestExam from backend.');
   } catch (error) {
     throw error;
   }
