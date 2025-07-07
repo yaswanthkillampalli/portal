@@ -1,0 +1,67 @@
+/* --- Due Assignment Item --- */
+.home-due-assignment-item {
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.home-due-assignment-items-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.home-due-assignment-item-logo {
+  font-size: 13px;
+  background: linear-gradient(to right, #00d1ff, #ff4ecd);
+  background-clip: text;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #00d1ff;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  color: transparent;
+}
+
+.home-due-assignment-item-name {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.home-due-assignment-item-due-date {
+  background-color: #990003; /* Soft red tone */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  min-width: 30px;
+  max-width: 40px;
+  min-height: 30px;
+  max-height: 40px;
+}
+
+.home-due-assignment-item-due-date-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+  line-height: 1.1;
+  text-align: center;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-due-assignment-item-due-date-info {
+  font-size: 10px;
+  font-weight: 400;
+  color: white;
+  margin-top: 1px;
+  opacity: 0.75;
+  letter-spacing: 0.5px;
+}
