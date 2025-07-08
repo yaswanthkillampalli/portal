@@ -88,3 +88,44 @@ export const upcomingExamsCache = async () => {
     throw error;
   }
 };
+
+export const getProfileDetails = async () => {
+  try {
+    const response = await api.get('/profile/student');
+    if (response.data && response.data) {
+      return response.data.profile;
+    }
+    throw new Error('Invalid response format or missing profile from backend.');
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const getPersonalProfileDetails = async () => {
+  try {
+    const response = await api.get('/profile/personal-student');
+    if (response.data && response.data.personal) {
+      return response.data.personal.contact;
+    }
+    throw new Error('Invalid response format or missing studentDetails from backend.');
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getParentDetails = async () => {
+  try {
+    const response = await api.get('/profile/student-parents');
+    if (response.data && response.data.parent) {
+      console.log(response.data.parent);
+      return response.data.parent;
+    }
+    throw new Error('Invalid response format or missing parentDetails from backend.');
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateProfileDetails = async (data) => {
+
+}
