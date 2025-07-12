@@ -26,3 +26,33 @@ export const login = async (credentials) => {
     throw error;
   }
 };
+
+export const changePassword = async (credentials) => {
+  try {
+    console.log("Credentials sent to backend:", credentials);
+    if (credentials.reEnterNewPassword !== credentials.newPassword) {
+      const error = new Error('New password and re-entered password do not match.');
+      error.response = { data: { message: error.message } }; // Mimic axios error structure for consistent error handling
+      throw error;
+    }
+
+    const response = await api.put('/password/change-password', {
+      currentPassword: credentials.oldPassword,
+      newPassword: credentials.newPassword 
+    }); 
+    
+    console.log("Backend response:", response);
+
+    if (response.data && response.data.message) { 
+      const token = response.data.token;
+      setToken(token);
+      return { success: true, message: response.data.message };
+    }
+    
+    return { success: true, message: 'Password changed successfully!' };
+
+  } catch (error) {
+    console.error('Change password failed:', error.response?.data?.message || error.message);
+    throw error.response?.data?.message || 'An unexpected error occurred.'; 
+  }
+};

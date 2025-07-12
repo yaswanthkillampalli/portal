@@ -119,14 +119,14 @@ export default function ParentDetailsSection({ profileData, handleInputChange, i
       <div className="update-button-div">
         {isEditing ? (
           <>
-            <button className="update-button" onClick={onSave} disabled={isLoading}>
+            <button className="update-button" onClick={onSave}>
               Save Changes
             </button>
             <button
               className="update-button"
               onClick={() => onEditToggle(false)}
               style={{ marginLeft: '10px' }}
-              disabled={isLoading}
+              // disabled={isLoading}
             >
               Cancel
             </button>

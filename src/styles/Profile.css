@@ -84,6 +84,18 @@
   gap: 20px;
 }
 
+.home-btn {
+  position: fixed;
+  margin: 20px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+}
+.home-btn:hover {
+  background-color: #7b95dc;
+  color:white;
+}
 .profile-right-side-image-container {
   display: flex;
   flex-direction: row;

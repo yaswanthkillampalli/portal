@@ -1,10 +1,8 @@
 import React from 'react';
-import ProfileInputField from './ProfileInputField';
-
+import ProfileInputField from './ProfileInputField'; // Assuming you have a Notification component for displaying messages
 export default function PasswordChangeForm({ formData, onInputChange, onPasswordChange, error, setError }) {
   const handleSubmit = (e) => {
     e.preventDefault();
-    setError(''); // Clear previous errors
     onPasswordChange(formData); // Pass formData to the parent handler
   };
 

@@ -1,0 +1,137 @@
+/* Base styles for the notification container */
+.notification-container {
+  position: fixed;
+  top: 1rem; /* Equivalent to top-4 */
+  right: 1rem; /* Equivalent to right-4 */
+  z-index: 50;
+  padding: 1rem; /* Equivalent to p-4 */
+  border-radius: 0.5rem; /* Equivalent to rounded-lg */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Equivalent to shadow-lg */
+  border-left: 4px solid; /* Equivalent to border-l-4, color set by status classes */
+  max-width: 24rem; /* Equivalent to max-w-sm */
+  width: 100%;
+  box-sizing: border-box; /* Ensures padding doesn't increase total width */
+
+  /* Initial state for animation (hidden) */
+  opacity: 0;
+  transform: translateY(-100%); /* Slide up from top */
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* Transition properties */
+}
+
+/* Responsive adjustments for medium screens and up */
+@media (min-width: 768px) { /* Equivalent to md: */
+  .notification-container {
+    max-width: 28rem; /* Equivalent to md:max-w-md */
+  }
+}
+
+/* Visibility states for animation */
+.notification-container.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notification-container.is-hidden {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+/* Flex container for content */
+.notification-content {
+  display: flex;
+  align-items: flex-start; /* Equivalent to items-start */
+}
+
+/* Status Icon wrapper */
+.notification-icon-wrapper {
+  flex-shrink: 0; 
+  margin-top: 0.25rem; 
+  margin-right: 0.75rem;
+  font-size: 1.5rem; 
+}
+
+.notification-icon-wrapper svg {
+  transform: rotate(0deg);
+}
+/* Message Content wrapper */
+.notification-message-wrapper {
+  flex-grow: 1; /* Equivalent to flex-grow */
+}
+
+.notification-from {
+  font-weight: 600; /* Equivalent to font-semibold */
+  font-size: 1.125rem; /* Equivalent to text-lg */
+  margin-bottom: 0.25rem; /* Equivalent to mb-1 */
+}
+
+.notification-message {
+  font-size: 0.875rem; /* Equivalent to text-sm */
+}
+
+/* Close Button */
+.notification-close-button {
+  margin-left: 1rem; /* Equivalent to ml-4 */
+  flex-shrink: 0; /* Equivalent to flex-shrink-0 */
+  color: #6b7280; /* Equivalent to text-gray-500 */
+  padding: 0.25rem; /* Equivalent to p-1 */
+  border-radius: 9999px; /* Equivalent to rounded-full */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.15s ease-in-out; /* For hover effect */
+}
+
+.notification-close-button:hover {
+  color: #4b5563; /* Equivalent to hover:text-gray-700 */
+}
+
+.notification-close-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(156, 163, 175, 0.5); /* Equivalent to focus:ring-2 focus:ring-gray-300 */
+}
+
+.notification-close-icon {
+  height: 1.75rem; /* Equivalent to h-5 */
+  width: 1.75rem; /* Equivalent to w-5 */
+}
+
+/* Status-specific styles */
+
+/* Success */
+.notification-success {
+  background-color: #d1fae5; /* bg-green-100 */
+  border-color: #34d399; /* border-green-400 */
+  color: #065f46; /* text-green-800 */
+}
+.notification-icon-success {
+  color: #10b981; /* text-green-500 */
+}
+
+/* Warning */
+.notification-warning {
+  background-color: #fffbeb; /* bg-yellow-100 */
+  border-color: #fcd34d; /* border-yellow-400 */
+  color: #92400e; /* text-yellow-800 */
+}
+.notification-icon-warning {
+  color: #f59e0b; /* text-yellow-500 */
+}
+
+/* Error */
+.notification-error {
+  background-color: #fee2e2; /* bg-red-100 */
+  border-color: #f87171; /* border-red-400 */
+  color: #991b1b; /* text-red-800 */
+}
+.notification-icon-error {
+  color: #ef4444; /* text-red-500 */
+}
+
+.notification-info {
+  background-color: #eff6ff;
+  border-color: #60a5fa;
+  color: #1e40af; 
+}
+.notification-icon-info {
+  color: #3b82f6; 
+}

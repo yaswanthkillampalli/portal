@@ -127,5 +127,12 @@ export const getParentDetails = async () => {
 };
 
 export const updateProfileDetails = async (data) => {
+  try {
+    const response = await api.put('/profile/update', data);
+    return response.data;
 
+  } catch (error) {
+    console.error('Error updating profile:', error);
+    throw new Error('Failed to update profile');
+  }
 }

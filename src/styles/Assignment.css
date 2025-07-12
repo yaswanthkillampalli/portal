@@ -1,0 +1,355 @@
+/* General page styling */
+.assignment-page {
+  height: 100vh;
+  background-color: #f4f6f9;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar styling */
+.assignment-page-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.assignment-page-navbar h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.assignment-page-navbar__buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.assignment-page-navbar-home-button {
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.assignment-page-navbar-home-button:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+.assignment-home-notification-symbol {
+  color: #3b82f6;
+  font-size: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+.assignment-home-notification-symbol:hover {
+  transform: scale(1.1);
+}
+
+.assignment-profile-pic-container {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #3b82f6;
+  border-radius: 50%;
+  padding: 2px;
+  overflow: hidden;
+}
+
+.assignment-navbar-profile {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Content container */
+.assignment-content-div {
+  display: flex;
+  flex: 1;
+  margin: 1rem 2rem;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden; /* Prevent content from spilling out */
+}
+
+/* Left panel */
+.assignment-content-left-div {
+  flex: 1;
+  padding: 1.5rem;
+  border-radius: 12px 0 0 12px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+}
+
+.assignment-content-left-dive-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.assignment-content-left-div-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #e2e8f0;
+  color: #1a202c;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.assignment-content-left-div-button:hover {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.assignment-content-left-div-button-active {
+  background-color: #3b82f6;
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Assignment list */
+.assignmentcontent-left-div-assignment {
+  flex: 1;
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: calc(100vh - 220px); /* Adjust based on navbar and button heights */
+  padding-right: 0.5rem; /* Space for scrollbar */
+}
+
+/* Custom scrollbar for assignment list */
+.assignmentcontent-left-div-assignment::-webkit-scrollbar {
+  width: 8px;
+}
+
+.assignmentcontent-left-div-assignment::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.assignmentcontent-left-div-assignment::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 4px;
+}
+
+.assignmentcontent-left-div-assignment::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+.assignment-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  margin-bottom: 0.75rem;
+}
+
+.assignment-div:hover {
+  background-color: #f0f4ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.assignment-div-title h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.assignment-div-title-small-info-div {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: #4b5563;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.assignment-div-title-small-info-div-circle-status {
+  color: #22c55e;
+  font-size: 0.8rem;
+}
+
+.assignment-div-title-small-info-div-circle-score {
+  color: #8b5cf6;
+  font-size: 0.8rem;
+}
+
+.assignment-div-title-small-info-div-circle-time {
+  color: #3b82f6;
+  font-size: 0.8rem;
+}
+
+.assignment-div-title-small-info-div-text {
+  margin: 0;
+  font-weight: 400;
+}
+
+.assignment-open-button {
+  height: 32px;
+  width: 100px;
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.assignment-open-button:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+/* Right preview panel */
+.assignment-preview-right-div {
+  flex: 0 0 350px;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  color: #ffffff;
+  border-radius: 0 12px 12px 0;
+  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: calc(100vh - 130px); /* Adjust based on navbar height */
+  border: 1px solid #3b82f6;
+}
+
+/* Custom scrollbar for preview panel */
+.assignment-preview-right-div::-webkit-scrollbar {
+  width: 8px;
+}
+
+.assignment-preview-right-div::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.assignment-preview-right-div::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border-radius: 4px;
+  opacity: 0.7;
+}
+
+.assignment-preview-right-div::-webkit-scrollbar-thumb:hover {
+  background: #e2e8f0;
+}
+
+.assignment-preview-right-div h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 0.5rem;
+}
+
+.assignment-preview-description {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.assignment-preview-details {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.assignment-preview-details li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.assignment-preview-details li:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.assignment-preview-icon {
+  font-size: 1rem;
+}
+
+.assignment-preview-questions h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+.assignment-preview-questions ol {
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.assignment-preview-questions li {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.assignment-preview-questions li:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .assignment-content-div {
+    flex-direction: column;
+    margin: 1rem;
+  }
+
+  .assignment-content-left-div {
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+
+  .assignment-preview-right-div {
+    max-width: 100%;
+    border-radius: 12px;
+    max-height: 50vh; /* Limit height on mobile */
+  }
+
+  .assignment-page-navbar {
+    padding: 1rem;
+  }
+
+  .assignmentcontent-left-div-assignment {
+    max-height: 40vh; /* Adjust for mobile */
+  }
+}

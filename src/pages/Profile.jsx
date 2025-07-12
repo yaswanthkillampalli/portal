@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/Profile.css';
 import { HashLoader } from 'react-spinners';
+import Notification from '../components/Notification'; // Import the Notification component
 import SidebarNavigation from '../components/SidebarNavigation';
 import BasicProfileDetails from '../components/profile/BasicProfileDetails';
 import AddressDetails from '../components/profile/AddressDetails';
@@ -10,10 +11,12 @@ import PasswordChangeForm from '../components/profile/PasswordChangeForm';
 import LoadingSpinner from '../components/LoadingSpinner';
 import useProfileData from '../hooks/useProfileData';
 import { updateProfileDetails } from '../services/student';
+import { changePassword } from '../services/auth';
 
 export default function ProfilePage() {
   const [activeSection, setActiveSection] = useState('profile');
   const [isEditing, setIsEditing] = useState(false);
+  const [notification, setNotification] = useState(null); // State to manage notification visibility and content
 
   const {
     profileData,
@@ -21,13 +24,22 @@ export default function ProfilePage() {
     formData,
     setFormData,
     isLoading,
-    error,
-    setError,
+    // Removed error and setError as Notification component will handle error display
   } = useProfileData(activeSection);
+
+  // Helper function to display a notification
+  const showNotification = (from, message, statusCode, duration = 5000) => {
+    setNotification({ from, message, statusCode, duration });
+  };
+
+  // Callback to clear the notification (passed to Notification component)
+  const clearNotification = () => {
+    setNotification(null);
+  };
 
   const handleSectionChange = (section) => {
     setActiveSection(section);
-    setError('');
+    // Removed setError('')
     setIsEditing(false);
     setFormData({ oldPassword: '', newPassword: '', reEnterNewPassword: '' });
   };
@@ -42,22 +54,42 @@ export default function ProfilePage() {
   };
 
   const handleSaveChanges = async () => {
-    // This is for 'profile', 'personal', and 'parent' sections
-    if (activeSection === 'password') return; // Password change handled separately
+    if (activeSection === 'password') return;
 
-    setError('');
+    // Removed setError('')
     try {
       await updateProfileDetails(profileData);
       setIsEditing(false);
-      alert('Profile updated successfully!');
+      showNotification('Profile Update', 'Profile updated successfully!', 200); // Show success notification
     } catch (err) {
       console.error('Error updating profile:', err);
-      setError('Failed to update profile');
+      // Show error notification
+      showNotification('Profile Update', 'Failed to update profile.', 500); 
+    }
+  };
+
+  const handleChangePassword = async () => {
+    // Removed setError('')
+    try {
+      const result = await changePassword(formData);
+      console.log("Password Change Result:", result);
+      if (result.success) {
+        showNotification('Password Change', result.message, 200); // Show success notification
+        setFormData({ oldPassword: '', newPassword: '', reEnterNewPassword: '' });
+      } else {
+        // Assuming result.message contains the error for client-side validation (e.g., passwords don't match)
+        showNotification('Password Change', result.message, 400); // Show warning/error notification
+      }
+    } catch (err) {
+      console.error('Error changing password in component:', err);
+      // Show error notification for API errors
+      showNotification('Password Change', err.toString() || 'An unexpected error occurred.', 500);
     }
   };
 
   return (
     <div className="profile-main-container">
+      <button className='home-btn'>Home</button>
       <SidebarNavigation
         activeSection={activeSection}
         onSectionChange={handleSectionChange}
@@ -68,7 +100,7 @@ export default function ProfilePage() {
           <LoadingSpinner />
         ) : (
           <div className="profile-right-side-container-content">
-            {error && <p className="profile-error">{error}</p>}
+            {/* Removed {error && <p className="profile-error">{error}</p>} */}
 
             {activeSection === 'profile' && (
               <>
@@ -136,28 +168,22 @@ export default function ProfilePage() {
               <PasswordChangeForm
                 formData={formData}
                 onInputChange={handleInputChange}
-                onPasswordChange={(passwordFormData) => {
-                  const { oldPassword, newPassword, reEnterNewPassword } = passwordFormData;
-                  const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-                  if (!passwordRegex.test(newPassword)) {
-                    setError('New password must be at least 8 characters long and include one digit, one capital letter, and one special character.');
-                    return;
-                  }
-                  if (newPassword !== reEnterNewPassword) {
-                    setError('New password and re-entered password do not match.');
-                    return;
-                  }
-                  alert('Password change successful! (Simulated)');
-                  setFormData({ oldPassword: '', newPassword: '', reEnterNewPassword: '' });
-                  setError('');
-                }}
-                error={error}
-                setError={setError}
+                onPasswordChange={handleChangePassword}
               />
             )}
           </div>
         )}
       </div>
+
+      {notification && (
+        <Notification
+          from={notification.from}
+          message={notification.message}
+          statusCode={notification.statusCode}
+          duration={notification.duration}
+          onClose={clearNotification}
+        />
+      )}
     </div>
   );
 }

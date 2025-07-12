@@ -1,17 +1,19 @@
 import React from 'react';
-import ProfileInputField from './ProfileInputField';
+import ProfileInputField from './ProfileInputField'; 
+import ProfileImageUploader from './ProfileImageUploader';
 
-export default function BasicProfileDetails({ profileData, handleInputChange, isEditing }) {
+
+export default function BasicProfileDetails({ profileData, handleInputChange, isEditing, onProfileImageUpdate, userId }) {
   return (
     <div className="profile-right-side-content">
       <div className="profile-right-side-image-container">
-        <div className="profile-right-side-image">
-          <img
-            src={profileData.profileImage}
-            alt="Profile"
-            className="profile-image-settings"
-          />
-        </div>
+        <ProfileImageUploader
+          currentImageUrl={profileData.profileImage} // Pass the current image URL
+          userId={userId} // Pass the user ID for API calls
+          isEditing={isEditing} // Control whether the uploader is enabled
+          onImageUploadSuccess={onProfileImageUpdate} // Callback to update parent's profileImage state
+        />
+
         <div className="profile-right-size-text">
           <div className="profile-d-flex-items">
             <div className="profile-d-flex-item">
@@ -65,7 +67,7 @@ export default function BasicProfileDetails({ profileData, handleInputChange, is
                 type="date"
                 value={profileData.profileEnrollmentDate || ''}
                 onChange={handleInputChange}
-                readOnly={!isEditing}
+                readOnly={true}
               />
             </div>
             <div className="profile-d-flex-item">
@@ -75,7 +77,7 @@ export default function BasicProfileDetails({ profileData, handleInputChange, is
                 type="text"
                 value={profileData.profileProgram || ''}
                 onChange={handleInputChange}
-                readOnly={!isEditing}
+                readOnly={true}
               />
             </div>
           </div>
@@ -87,7 +89,7 @@ export default function BasicProfileDetails({ profileData, handleInputChange, is
                 type="text"
                 value={profileData.profileBranch || ''}
                 onChange={handleInputChange}
-                readOnly={!isEditing}
+                readOnly={true}
               />
             </div>
             <div className="profile-d-flex-item">
@@ -97,7 +99,7 @@ export default function BasicProfileDetails({ profileData, handleInputChange, is
                 type="text"
                 value={profileData.profileSemester || ''}
                 onChange={handleInputChange}
-                readOnly={!isEditing}
+                readOnly={true}
               />
             </div>
           </div>
